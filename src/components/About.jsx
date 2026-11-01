@@ -71,8 +71,8 @@ export default function About() {
                 style={{ background: 'linear-gradient(135deg, rgba(212,160,23,0.2), rgba(255,154,0,0.1))', border: '1px solid rgba(212,160,23,0.2)' }} />
               <img src={profileImg} alt="About Me" className="relative rounded-2xl w-full object-cover" style={{ height: 480 }} />
               <div className="glass-card absolute -bottom-6 -right-6 p-5 text-center">
-                <p className="stat-number">2+</p>
-                <p className="text-gray-400 text-sm mt-1">Years Experience</p>
+                <p className="stat-number"></p>
+                <p className="text-gray-400 text-sm mt-1">Web Developer</p>
               </div>
             </div>
           </div>
@@ -121,9 +121,9 @@ export default function About() {
               ))}
             </div>
 
-            <a href="#" className="btn-gold">
+            {/* <a href="#" className="btn-gold">
               <i className="fas fa-download mr-2"></i>Download CV
-            </a>
+            </a> */}
           </div>
         </div>
 
