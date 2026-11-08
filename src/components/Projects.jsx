@@ -1,8 +1,12 @@
 import { useEffect, useRef, useState, useCallback } from 'react'
+import { createPortal } from 'react-dom'
 import wastelog from '../assets/wastelog.png'
-import wastelog1 from '../assets/wastelog4.png'
+import wastelog1 from '../assets/wastelog1.png'
 import wastelog2 from '../assets/wastelog3.png'
-import pemetaan from '../assets/project_pemetaan.png'
+import wastelog3 from '../assets/wastelog5.jpg'
+import wastelog4 from '../assets/wastelog6.jpg'
+import wastelog5 from '../assets/wastelog7.jpg'
+import pemetaan2 from '../assets/pemetaan2.jpg'
 import pemetaan1 from '../assets/pemetaan.png'
 
 function useReveal() {
@@ -27,7 +31,7 @@ const projects = [
     title: 'WasteLog',
     category: 'web',
     categoryLabel: 'Web App',
-    images: [wastelog, wastelog1, wastelog2], // ← ganti dengan foto-foto berbeda
+    images: [wastelog, wastelog1, wastelog2, wastelog3, wastelog4, wastelog5], // ← ganti dengan foto-foto berbeda
     desc: 'Mengembangkan aplikasi web WasteLog untuk mengelola proses operasional limbah B3, mulai dari pencatatan limbah masuk, pengolahan menggunakan insinerator, hingga pengiriman residu. Membangun fitur manajemen data berbasis multi-role authentication, CRUD, import/export Excel dan PDF, serta dashboard interaktif untuk visualisasi statistik dan monitoring data. Mengimplementasikan algoritma FIFO untuk pengelolaan stok residu dan perhitungan otomatis hasil pembakaran.',
     tags: ['Laravel', 'PHP', 'MySQL', 'Import/Export Excel', 'FIFO', 'CRUD', 'Chart', 'Dashboard Analytics'],
   },
@@ -36,7 +40,7 @@ const projects = [
     title: 'Dashboard Pemetaan Smart',
     category: 'data',
     categoryLabel: 'Data / GIS',
-    images: [pemetaan1, pemetaan1, pemetaan1], // ← ganti dengan foto-foto berbeda
+    images: [pemetaan1, pemetaan2], // ← ganti dengan foto-foto berbeda
     desc: 'Mengembangkan aplikasi dashboard pemetaan harga komoditas pangan di Jawa Timur dengan mengintegrasikan data hasil web scraping dari SISKAPERBAPO ke dalam PostgreSQL. Menampilkan persebaran harga melalui peta interaktif berbasis Leaflet.js, grafik tren dan perbandingan harga menggunakan Chart.js, serta analisis stabilitas harga berbasis statistik, rule-based decision, dan Google Gemini AI untuk menghasilkan narasi analisis otomatis.',
     tags: ['Laravel', 'Leaflet.js', 'PostgreSQL', 'Python', 'scraping', 'Gemini AI', 'GIS', 'Chart'],
   },
@@ -57,12 +61,125 @@ const filters = [
   { key: 'data', label: 'Data / GIS' },
 ]
 
+// ── Lightbox (tampilan foto diperbesar) ───────────────────────────────
+// Dirender lewat portal ke <body> supaya tidak terjebak di dalam card
+// (card memakai backdrop-filter & transform yang membatasi posisi "fixed").
+function Lightbox({ images, index, title, onClose, onChange }) {
+  const total = images.length
+
+  const go = useCallback(
+    dir => onChange((index + dir + total) % total),
+    [index, total, onChange]
+  )
+
+  useEffect(() => {
+    const onKey = e => {
+      if (e.key === 'Escape') onClose()
+      else if (e.key === 'ArrowLeft' && total > 1) go(-1)
+      else if (e.key === 'ArrowRight' && total > 1) go(1)
+    }
+    window.addEventListener('keydown', onKey)
+    const prevOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    return () => {
+      window.removeEventListener('keydown', onKey)
+      document.body.style.overflow = prevOverflow
+    }
+  }, [go, onClose, total])
+
+  const roundBtn = {
+    position: 'absolute', width: 44, height: 44, borderRadius: '50%',
+    border: '1px solid rgba(212,160,23,0.4)', cursor: 'pointer',
+    background: 'rgba(10,10,15,0.8)', color: '#f5c842',
+    display: 'flex', alignItems: 'center', justifyContent: 'center',
+    transition: 'background 0.2s ease',
+  }
+  const hoverOn = e => (e.currentTarget.style.background = 'rgba(212,160,23,0.8)')
+  const hoverOff = e => (e.currentTarget.style.background = 'rgba(10,10,15,0.8)')
+
+  return createPortal(
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-label={`${title} - foto diperbesar`}
+      onClick={onClose}
+      style={{
+        position: 'fixed', inset: 0, zIndex: 9999,
+        background: 'rgba(5,5,10,0.92)', backdropFilter: 'blur(6px)',
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        padding: '64px 16px',
+      }}
+    >
+      {/* Tombol tutup */}
+      <button
+        onClick={e => { e.stopPropagation(); onClose() }}
+        aria-label="Tutup"
+        style={{ ...roundBtn, top: 16, right: 16 }}
+        onMouseEnter={hoverOn} onMouseLeave={hoverOff}
+      >
+        <i className="fas fa-times"></i>
+      </button>
+
+      {/* Foto */}
+      <img
+        src={images[index]}
+        alt={`${title} - foto ${index + 1}`}
+        onClick={e => e.stopPropagation()}
+        style={{
+          maxWidth: '100%', maxHeight: '100%', objectFit: 'contain',
+          borderRadius: 12, border: '1px solid rgba(212,160,23,0.25)',
+          boxShadow: '0 0 60px rgba(212,160,23,0.15)',
+        }}
+      />
+
+      {/* Prev / Next */}
+      {total > 1 && (
+        <>
+          <button
+            onClick={e => { e.stopPropagation(); go(-1) }}
+            aria-label="Foto sebelumnya"
+            style={{ ...roundBtn, left: 12, top: '50%', transform: 'translateY(-50%)' }}
+            onMouseEnter={hoverOn} onMouseLeave={hoverOff}
+          >
+            <i className="fas fa-chevron-left"></i>
+          </button>
+          <button
+            onClick={e => { e.stopPropagation(); go(1) }}
+            aria-label="Foto berikutnya"
+            style={{ ...roundBtn, right: 12, top: '50%', transform: 'translateY(-50%)' }}
+            onMouseEnter={hoverOn} onMouseLeave={hoverOff}
+          >
+            <i className="fas fa-chevron-right"></i>
+          </button>
+        </>
+      )}
+
+      {/* Keterangan */}
+      <div
+        onClick={e => e.stopPropagation()}
+        style={{
+          position: 'absolute', bottom: 16, left: '50%', transform: 'translateX(-50%)',
+          background: 'rgba(10,10,15,0.8)', border: '1px solid rgba(212,160,23,0.3)',
+          borderRadius: 20, padding: '4px 16px', fontSize: '0.8rem',
+          color: '#f5c842', fontWeight: 600, whiteSpace: 'nowrap',
+          maxWidth: 'calc(100% - 32px)', overflow: 'hidden', textOverflow: 'ellipsis',
+        }}
+      >
+        {title}{total > 1 ? ` · ${index + 1} / ${total}` : ''}
+      </div>
+    </div>,
+    document.body
+  )
+}
+
 // ── Image Slider Component ────────────────────────────────────────────
 function ImageSlider({ images, title }) {
   const [current, setCurrent] = useState(0)
   const [dragging, setDragging] = useState(false)
   const [startX, setStartX] = useState(0)
   const [dragDelta, setDragDelta] = useState(0)
+  const [lightbox, setLightbox] = useState(false)
+  const movedRef = useRef(false) // true jika pengguna menggeser (bukan sekadar klik/tap)
   const sliderRef = useRef(null)
 
   const total = images.length
@@ -77,16 +194,21 @@ function ImageSlider({ images, title }) {
     setCurrent(c => (c + 1) % total)
   }, [total])
 
+  const closeLightbox = useCallback(() => setLightbox(false), [])
+
   // ── Touch / Mouse drag ─────────────────────────────
   const onDragStart = (clientX) => {
     setDragging(true)
     setStartX(clientX)
     setDragDelta(0)
+    movedRef.current = false
   }
 
   const onDragMove = (clientX) => {
     if (!dragging) return
-    setDragDelta(clientX - startX)
+    const delta = clientX - startX
+    if (Math.abs(delta) > 5) movedRef.current = true
+    setDragDelta(delta)
   }
 
   const onDragEnd = () => {
@@ -95,6 +217,12 @@ function ImageSlider({ images, title }) {
     if (dragDelta < -50) next()
     else if (dragDelta > 50) prev()
     setDragDelta(0)
+  }
+
+  // Klik/tap tanpa menggeser = buka foto diperbesar
+  const onSliderClick = () => {
+    if (movedRef.current) return
+    setLightbox(true)
   }
 
   // Mouse events
@@ -123,7 +251,8 @@ function ImageSlider({ images, title }) {
   return (
     <div
       ref={sliderRef}
-      style={{ position: 'relative', height: 220, overflow: 'hidden', cursor: dragging ? 'grabbing' : 'grab', userSelect: 'none' }}
+      style={{ position: 'relative', height: 220, overflow: 'hidden', cursor: dragging ? 'grabbing' : 'zoom-in', userSelect: 'none' }}
+      onClick={onSliderClick}
       onMouseDown={onMouseDown}
       onMouseMove={onMouseMove}
       onMouseUp={onMouseUp}
@@ -154,11 +283,22 @@ function ImageSlider({ images, title }) {
         ))}
       </div>
 
+      {/* Petunjuk bisa diperbesar */}
+      <div style={{
+        position: 'absolute', bottom: 10, right: 10, zIndex: 10, pointerEvents: 'none',
+        width: 28, height: 28, borderRadius: '50%',
+        background: 'rgba(10,10,15,0.75)', border: '1px solid rgba(212,160,23,0.3)',
+        color: '#f5c842', display: 'flex', alignItems: 'center', justifyContent: 'center',
+      }}>
+        <i className="fas fa-expand" style={{ fontSize: 11 }}></i>
+      </div>
+
       {/* Prev / Next buttons — tampil hanya jika > 1 foto */}
       {total > 1 && (
         <>
           <button
             onClick={prev}
+            aria-label="Foto sebelumnya"
             style={{
               position: 'absolute', left: 10, top: '50%', transform: 'translateY(-50%)',
               width: 32, height: 32, borderRadius: '50%', border: 'none', cursor: 'pointer',
@@ -174,6 +314,7 @@ function ImageSlider({ images, title }) {
 
           <button
             onClick={next}
+            aria-label="Foto berikutnya"
             style={{
               position: 'absolute', right: 10, top: '50%', transform: 'translateY(-50%)',
               width: 32, height: 32, borderRadius: '50%', border: 'none', cursor: 'pointer',
@@ -195,6 +336,7 @@ function ImageSlider({ images, title }) {
             {images.map((_, i) => (
               <button
                 key={i}
+                aria-label={`Ke foto ${i + 1}`}
                 onClick={e => { e.stopPropagation(); setCurrent(i) }}
                 style={{
                   width: i === current ? 20 : 8,
@@ -221,6 +363,17 @@ function ImageSlider({ images, title }) {
           </div>
         </>
       )}
+
+      {/* Foto diperbesar */}
+      {lightbox && (
+        <Lightbox
+          images={images}
+          index={current}
+          title={title}
+          onClose={closeLightbox}
+          onChange={setCurrent}
+        />
+      )}
     </div>
   )
 }
@@ -234,7 +387,7 @@ function ProjectCard({ project, visible }) {
       <div style={{ position: 'relative', borderRadius: '16px 16px 0 0', overflow: 'hidden' }}>
         <ImageSlider images={project.images} title={project.title} />
         {/* Category badge */}
-        <div style={{ position: 'absolute', top: 12, left: 12, zIndex: 20 }}>
+        <div style={{ position: 'absolute', top: 12, left: 12, zIndex: 20, pointerEvents: 'none' }}>
           <span className="badge text-xs">{project.categoryLabel}</span>
         </div>
       </div>
@@ -293,7 +446,7 @@ export default function Projects() {
         </div>
 
         {/* Grid */}
-        <div ref={ref3} className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div ref={ref3} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filtered.map(p => (
             <ProjectCard key={p.id} project={p} visible={v3} />
           ))}

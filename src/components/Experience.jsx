@@ -15,9 +15,15 @@ function useReveal() {
 
 const timeline = [
   {
+    title: 'Full-Stack Developer',
+    org: 'Dashboard Pemetaan Sebaran Harga Komoditas Bahan Pokok Jawa Timur | Skripsi',
+    period: 'Februari 2026 - Juli 2026',
+    desc: 'Mengembangkan dashboard pemetaan harga komoditas pangan berdasarkan data SISKAPERBAPO. Membangun proses web scraping menggunakan Python untuk mengambil dan menyimpan data harga komoditas ke PostgreSQL. Mengembangkan visualisasi peta interaktif menggunakan Leaflet.js untuk menampilkan persebaran harga komoditas di wilayah Jawa Timur, membuat grafik tren dan perbandingan harga menggunakan Chart.js, serta mengintegrasikan Gemini AI API untuk menghasilkan analisis stabilitas harga komoditas berdasarkan data statistik.',
+  },
+  {
     title: 'Full Stack Developer',
     org: 'Magang / PT Putra Restu Ibu Abadi',
-    period: 'Juli-2025 - Desember-2026',
+    period: 'Juli-2025 - Desember-2025',
     desc: 'Mengembangkan sistem informasi manajemen limbah B3 berbasis web untuk mengelola pencatatan, pengolahan, dan pengiriman residu. Mengimplementasikan fitur multi-role authentication, manajemen data, import/export laporan Excel dan PDF, dashboard analytics, serta algoritma FIFO untuk pengelolaan stok residu menggunakan Laravel, PHP, dan MySQL.',
   },
   {
