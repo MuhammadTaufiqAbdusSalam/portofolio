@@ -29,7 +29,7 @@ const contactItems = [
   {
     icon: 'fab fa-linkedin',
     label: 'LinkedIn',
-    value: 'linkedin.com/in/Muhammad Taufiq',
+    value: 'linkedin.com/in/muhammad-taufiq-319340361',
     href: 'https://linkedin.com/in/muhammad-taufiq-319340361/',
   },
   {
@@ -42,16 +42,22 @@ const contactItems = [
 
 function ContactCard({ item }) {
   return (
-    <div className="glass-card p-6 flex items-center gap-5 group">
-      <div className="w-14 h-14 rounded-xl flex items-center justify-center flex-shrink-0 transition-transform duration-300 group-hover:scale-110"
-        style={{ background: 'rgba(212,160,23,0.15)', border: '1px solid rgba(212,160,23,0.3)' }}>
+    <div className="glass-card p-4 sm:p-6 flex items-center gap-4 sm:gap-5 group min-w-0">
+      <div
+        className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl flex items-center justify-center flex-shrink-0 transition-transform duration-300 group-hover:scale-110"
+        style={{ background: 'rgba(212,160,23,0.15)', border: '1px solid rgba(212,160,23,0.3)' }}
+      >
         <i className={`${item.icon} text-xl`} style={{ color: '#f5c842' }}></i>
       </div>
-      <div>
+      <div className="min-w-0">
         <p className="text-gray-400 text-sm mb-1">{item.label}</p>
-        <a href={item.href} target="_blank" rel="noreferrer"
-          className="text-white font-semibold transition-colors hover:text-gold-400"
-          style={{ textDecoration: 'none' }}>
+        <a
+          href={item.href}
+          target="_blank"
+          rel="noreferrer"
+          className="text-white font-semibold transition-colors hover:text-gold-400 break-all"
+          style={{ textDecoration: 'none' }}
+        >
           {item.value}
         </a>
       </div>
@@ -82,7 +88,7 @@ export default function Contact() {
   }
 
   const inputStyle = {
-    width: '100%', padding: '12px 16px', borderRadius: 12,
+    width: '100%', minWidth: 0, padding: '12px 16px', borderRadius: 12,
     background: 'rgba(10,10,15,0.8)', border: '1px solid rgba(212,160,23,0.2)',
     color: '#e8e8f0', fontSize: '0.875rem', outline: 'none',
     transition: 'border-color 0.3s ease',
@@ -106,22 +112,22 @@ export default function Contact() {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
 
           {/* Contact Info */}
-          <div ref={ref2} className={`reveal ${v2 ? 'visible' : ''} space-y-6`}>
+          <div ref={ref2} className={`reveal ${v2 ? 'visible' : ''} space-y-6 min-w-0`}>
             <h3 className="text-2xl font-bold mb-8">Contact Information</h3>
             {contactItems.map(item => <ContactCard key={item.label} item={item} />)}
           </div>
 
           {/* Form */}
-          <div ref={ref3} className={`reveal ${v3 ? 'visible' : ''}`}>
-            <div className="glass-card p-8">
+          <div ref={ref3} className={`reveal ${v3 ? 'visible' : ''} min-w-0`}>
+            <div className="glass-card p-5 sm:p-8">
               <h3 className="text-2xl font-bold mb-6">Send a Message</h3>
               <form onSubmit={handleSubmit} className="space-y-5">
 
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="min-w-0">
                     <label className="block text-sm text-gray-400 mb-2" htmlFor="contact-name">Name</label>
                     <input
                       id="contact-name" name="name" type="text"
@@ -130,7 +136,7 @@ export default function Contact() {
                       onFocus={handleFocus} onBlur={handleBlur}
                     />
                   </div>
-                  <div>
+                  <div className="min-w-0">
                     <label className="block text-sm text-gray-400 mb-2" htmlFor="contact-email">Email</label>
                     <input
                       id="contact-email" name="email" type="email"
