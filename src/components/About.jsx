@@ -98,7 +98,7 @@ export default function About() {
             <div className="grid grid-cols-2 gap-6 mb-8">
               {[
                 { label: 'Name', value: 'Muhammad Taufiq Abdus Salam', className: 'text-white font-semibold' },
-                { label: 'Email', value: 'muhammadtaufiqabdussalam12@gmail.com', className: 'text-white font-semibold' },
+                // { label: 'Email', value: 'muhammadtaufiqabdussalam12@gmail.com', className: 'text-white font-semibold' },
                 { label: 'Location', value: 'Indonesia', className: 'text-white font-semibold' },
                 // { label: 'Status', value: null, className: '' },
               ].map((item, i) => (

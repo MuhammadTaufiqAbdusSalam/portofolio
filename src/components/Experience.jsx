@@ -21,17 +21,30 @@ const timeline = [
     desc: 'Mengembangkan sistem informasi manajemen limbah B3 berbasis web untuk mengelola pencatatan, pengolahan, dan pengiriman residu. Mengimplementasikan fitur multi-role authentication, manajemen data, import/export laporan Excel dan PDF, dashboard analytics, serta algoritma FIFO untuk pengelolaan stok residu menggunakan Laravel, PHP, dan MySQL.',
   },
   {
+    title: 'Full-Stack Developer',
+    org: 'Website Penjualan Mini Gift',
+    period: 'Mei 2025 - Juli 2025',
+    desc: 'Mengembangkan website penjualan produk Mini Gift menggunakan framework Laravel. Membangun fitur pengelolaan produk dan alur pemesanan pelanggan.',
+  },
+  {
+    title: 'Back-end & Front-end Developer',
+    org: 'Sistem Informasi Pendataan Sertifikasi dan Pelatihan Dosen JTI Polinema',
+    period: 'Agustus 2024 - Desember 2024',
+    desc: 'Mengembangkan aplikasi berbasis web dan mobile untuk mengelola data sertifikasi dan pelatihan dosen. Menganalisis kebutuhan sistem melalui kolaborasi tim, merancang UI/UX untuk tampilan mobile dan web agar alur pengguna intuitif dan mudah diakses, membangun fitur pengelolaan data menggunakan Laravel dan Flutter, serta merancang dan mengelola database MySQL untuk penyimpanan data sistem.',
+  },
+  {
+    title: 'Deployment',
+    org: 'Survei Kepuasan Pelanggan Polinema',
+    period: 'Februari 2024 - Juni 2024',
+    desc: 'Menganalisis kebutuhan sistem melalui kolaborasi tim, merancang UI/UX menggunakan Figma, dan membangun antarmuka serta fungsionalitas survei menggunakan HTML, PHP, dan CSS. Merancang dan mengelola database MySQL untuk mendukung penyimpanan data sistem.',
+  },
+  {
     title: 'Sistem Informasi Bisnis',
     org: 'Politeknik Negeri Malang',
     period: '2022 - 2026',
     desc: 'Mengerjakan berbagai project akademis dan praktikum yang memperkuat fundamental programming dan problem-solving.',
   },
-  // {
-  //   title: 'Started Coding Journey',
-  //   org: 'Self-taught & Online Courses',
-  //   period: '2022',
-  //   desc: 'Memulai perjalanan coding dengan mempelajari HTML, CSS, JavaScript, dan PHP secara otodidak. Mengambil berbagai kursus online untuk mempercepat pembelajaran.',
-  // },
+  
 ]
 
 function TimelineItem({ item, index, visible }) {
