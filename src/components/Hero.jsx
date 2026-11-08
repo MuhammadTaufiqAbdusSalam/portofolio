@@ -2,9 +2,9 @@ import { useState, useEffect } from 'react'
 
 const typingTexts = [
   'Full Stack Developer',
-  'Laravel Enthusiast',
+  'Laravel',
   'GIS & Data Visualizer',
-  'AI Integration Expert',
+  'AI Integration',
   'Problem Solver',
 ]
 

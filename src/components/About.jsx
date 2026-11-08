@@ -83,9 +83,13 @@ export default function About() {
               Full Stack Developer & <span className="text-gold-gradient">Problem Solver</span>
             </h3>
             <p className="text-gray-400 text-lg leading-relaxed mb-6">
-              Saya adalah seorang Full Stack Developer yang bersemangat dalam menciptakan solusi digital
-              yang elegant dan fungsional. Dengan pengalaman dalam pengembangan web modern,
-              saya selalu berusaha menghadirkan code yang bersih, maintainable, dan performant.
+              Saya merupakan lulusan D-IV SIstem Informasi Bisnis Politeknik Negeri Malang dengan IPK 3,65. Memiliki ketertarikan di bidang
+              pengembangan perangkat lunak, khususnya pengembangan aplikasi berbasis web dan pengelolaan sistem informasi. Memiliki
+              pengalaman dalam membangun aplikasi menggunakan Laravel, PHP, JavaScript, PostgreeSQL, Python, Tailwind CSS, Figma, dan
+              MySQL. Serta memiliki kemampuan dalam analisis kebutuhan sistem, perancangan database, pengolahan data, dan integrasi REST
+              API. Selama perkuliahan dan pengalaman magang, saya telah mengerjakan berbagai proyek pengembangan sistem informasi, baik
+              secara individu maupun tim. Saya merupakan pribadi yang bertanggung jawab, teliti, adaptif, memiliki semangat belajar yang tinggi, serta
+              mampu bekerja sama untuk menyelesaikan pekerjaan.
             </p>
             <p className="text-gray-400 text-lg leading-relaxed mb-8">
               Dalam proses pengembangan, saya terbiasa mengerjakan berbagai aspek,
