@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import sertifikasiImg from '../assets/sertifikasi.jpeg'
+import sertifikasiImg from '../assets/sertif.jpeg'
 function useReveal() {
   const ref = useRef(null)
   const [visible, setVisible] = useState(false)
@@ -18,7 +18,7 @@ function useReveal() {
 const certifications = [
   {
     title: 'Pemrograman Software Komputer',
-    issuer: 'LSP POLINEMA',
+    issuer: 'LSP POLINEMA | BNSP',
     year: '2026',
     image: sertifikasiImg,
   },
