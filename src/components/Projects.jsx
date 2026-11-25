@@ -18,6 +18,10 @@ import frozeria3 from '../assets/frozeria3.png'
 import frozeria4 from '../assets/frozeria4.png'
 import skp1 from '../assets/survei1.png'
 import skp2 from '../assets/survei2.png'
+import pos1 from '../assets/pos1.png'
+import pos2 from '../assets/pos2.png'
+import pos3 from '../assets/pos3.png'
+
 
 
 function useReveal() {
@@ -45,6 +49,15 @@ const projects = [
     images: [wastelog, wastelog1, wastelog2, wastelog3, wastelog4, wastelog5], // ← ganti dengan foto-foto berbeda
     desc: 'Mengembangkan aplikasi web WasteLog untuk mengelola proses operasional limbah B3, mulai dari pencatatan limbah masuk, pengolahan menggunakan insinerator, hingga pengiriman residu. Membangun fitur manajemen data berbasis multi-role authentication, CRUD, import/export Excel dan PDF, serta dashboard interaktif untuk visualisasi statistik dan monitoring data. Mengimplementasikan algoritma FIFO untuk pengelolaan stok residu dan perhitungan otomatis hasil pembakaran.',
     tags: ['Laravel', 'PHP', 'MySQL', 'Import/Export Excel', 'FIFO', 'CRUD', 'Chart', 'Dashboard Analytics'],
+  },
+  {
+    id: 'pointOfSales',
+    title: 'Point of Sales & Inventory Management System',
+    category: 'web',
+    categoryLabel: 'Web App',
+    images: [pos1, pos2, pos3], // ← ganti dengan foto-foto berbeda
+    desc: 'Point of Sale (POS) & Inventory Management System adalah aplikasi web terintegrasi yang dirancang untuk mengotomatisasi dan menyederhanakan siklus operasional bisnis ritel, mulai dari pengelolaan data master produk, pelacakan pemasok, mutasi stok, hingga pemrosesan transaksi kasir secara real-time. Dibangun menggunakan arsitektur MVC berbasis Laravel 10 dan MySQL, sistem ini mengimplementasikan kontrol akses berbasis peran (Role-Based Access Control) berjenjang untuk Administrator, Manager, dan Staff guna menjaga integritas data dan keamanan operasional. Dari sisi pengalaman pengguna, aplikasi ini mengadopsi antarmuka responsif berbasis AdminLTE yang dipadukan dengan interaktivitas AJAX modal, dialog interaktif SweetAlert2, serta pemrosesan data tabel sisi server (server-side processing) menggunakan Yajra DataTables. Selain itu, sistem dilengkapi dengan fitur automasi pelaporan bisnis berupa ekspor/impor data katalog dan transaksi ke format Excel & PDF, serta integrasi RESTful API terproteksi JWT yang siap dihubungkan ke aplikasi mobile maupun sistem eksternal.',
+    tags: ['Laravel', 'PHP', 'MySQL', 'JWT', 'Import/Export Excel', 'CRUD'],
   },
   {
     id: 'SKP',
