@@ -17,8 +17,8 @@ const contactItems = [
   {
     icon: 'fas fa-envelope',
     label: 'Email',
-    value: 'muhammadtaufiqabdussalam12@email.com',
-    href: 'mailto:muhammadtaufiqabdussalam12@email.com',
+    value: 'muhammadtaufiqabdussalam12@gmail.com',
+    href: 'mailto:muhammadtaufiqabdussalam12@gmail.com',
   },
   {
     icon: 'fab fa-whatsapp',

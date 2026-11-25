@@ -19,7 +19,7 @@ function useCounter(target, visible) {
   useEffect(() => {
     if (!visible) return
     let current = 0
-    const inc = target / 50
+    const inc = target / 40
     const timer = setInterval(() => {
       current += inc
       if (current >= target) { setCount(target); clearInterval(timer) }
@@ -31,17 +31,19 @@ function useCounter(target, visible) {
 }
 
 const stats = [
-  // { label: 'Projects Completed', count: 10 },
-  // { label: 'Years Experience', count: 2 },
-  // { label: 'Certifications', count: 3 },
+  { label: 'Proyek Selesai', count: 5, suffix: '+' },
+  { label: 'IPK Polinema', count: 3.65, isDecimal: true, suffix: '' },
+  { label: 'Keahlian Teknis', count: 16, suffix: '+' },
+  { label: 'Sertifikasi BNSP', count: 1, suffix: '' },
 ]
 
-function StatCard({ label, count, visible }) {
+function StatCard({ label, count, suffix = '', isDecimal = false, visible }) {
   const n = useCounter(count, visible)
+  const displayVal = isDecimal ? count : n
   return (
     <div className="glass-card p-6 text-center">
-      <p className="stat-number">{n}+</p>
-      <p className="text-gray-400 mt-2">{label}</p>
+      <p className="stat-number">{displayVal}{suffix}</p>
+      <p className="text-gray-400 mt-2 text-sm font-medium">{label}</p>
     </div>
   )
 }
@@ -69,10 +71,10 @@ export default function About() {
             <div className="relative w-full max-w-md mx-auto">
               <div className="absolute inset-0 translate-x-4 translate-y-4 rounded-2xl"
                 style={{ background: 'linear-gradient(135deg, rgba(212,160,23,0.2), rgba(255,154,0,0.1))', border: '1px solid rgba(212,160,23,0.2)' }} />
-              <img src={profileImg} alt="About Me" className="relative rounded-2xl w-full object-cover" style={{ height: 480 }} />
-              <div className="glass-card absolute -bottom-6 -right-6 p-5 text-center">
-                <p className="stat-number"></p>
-                <p className="text-gray-400 text-sm mt-1">Web Developer</p>
+              <img src={profileImg} alt="Muhammad Taufiq Abdus Salam" className="relative rounded-2xl w-full object-cover" style={{ height: 480 }} />
+              <div className="glass-card absolute -bottom-6 -right-6 p-4 px-6 text-center shadow-xl">
+                <p className="text-xl font-bold text-gold-gradient">Full Stack</p>
+                <p className="text-gray-400 text-xs mt-0.5">Web Developer</p>
               </div>
             </div>
           </div>
@@ -83,51 +85,38 @@ export default function About() {
               Full Stack Developer & <span className="text-gold-gradient">Problem Solver</span>
             </h3>
             <p className="text-gray-400 text-lg leading-relaxed mb-6">
-              Saya merupakan lulusan D-IV SIstem Informasi Bisnis Politeknik Negeri Malang dengan IPK 3,65. Memiliki ketertarikan di bidang
-              pengembangan perangkat lunak, khususnya pengembangan aplikasi berbasis web dan pengelolaan sistem informasi. Memiliki
-              pengalaman dalam membangun aplikasi menggunakan Laravel, PHP, JavaScript, PostgreeSQL, Python, Tailwind CSS, Figma, dan
-              MySQL. Serta memiliki kemampuan dalam analisis kebutuhan sistem, perancangan database, pengolahan data, dan integrasi REST
-              API. Selama perkuliahan dan pengalaman magang, saya telah mengerjakan berbagai proyek pengembangan sistem informasi, baik
-              secara individu maupun tim. Saya merupakan pribadi yang bertanggung jawab, teliti, adaptif, memiliki semangat belajar yang tinggi, serta
-              mampu bekerja sama untuk menyelesaikan pekerjaan.
+              Saya merupakan lulusan D-IV Sistem Informasi Bisnis Politeknik Negeri Malang dengan IPK 3,65. Memiliki ketertarikan mendalam di bidang
+              pengembangan perangkat lunak, khususnya arsitektur aplikasi berbasis web dan pengelolaan sistem informasi. Memiliki
+              pengalaman nyata dalam membangun aplikasi menggunakan PHP (Laravel), Python, Java, JavaScript, MySQL, PostgreSQL, Tailwind CSS, dan Bootstrap.
+              Serta terampil dalam perancangan database (Database Design), integrasi REST API, AI Integration, web scraping, dan pengolahan data.
             </p>
             <p className="text-gray-400 text-lg leading-relaxed mb-8">
-              Dalam proses pengembangan, saya terbiasa mengerjakan berbagai aspek,
-              mulai dari perancangan antarmuka frontend, pengembangan backend,
-              integrasi API, hingga pengelolaan database. Saya juga tertarik
-              mengeksplorasi teknologi AI untuk mengembangkan sistem yang lebih
-              cerdas, adaptif, dan mampu menjawab kebutuhan pengguna.
+              Selama perkuliahan dan magang, saya terbiasa mengerjakan proyek end-to-end, mulai dari analisis kebutuhan, perancangan antarmuka,
+              pengembangan backend, hingga optimasi database. Saya memiliki etos kerja disiplin, teliti, adaptif, berkomitmen pada kerja sama tim,
+              serta bertanggung jawab penuh dalam menyelesaikan setiap tantangan teknis.
             </p>
 
             <div className="grid grid-cols-2 gap-6 mb-8">
               {[
                 { label: 'Name', value: 'Muhammad Taufiq Abdus Salam', className: 'text-white font-semibold' },
-                // { label: 'Email', value: 'muhammadtaufiqabdussalam12@gmail.com', className: 'text-white font-semibold' },
                 { label: 'Location', value: 'Indonesia', className: 'text-white font-semibold' },
-                // { label: 'Status', value: null, className: '' },
               ].map((item, i) => (
                 <div key={i}>
                   <p className="text-gray-500 text-sm mb-1">{item.label}</p>
-                  {item.value
-                    ? <p className={item.className}>{item.value}</p>
-                    : <p className="text-green-400 font-semibold flex items-center gap-2">
-                        <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse inline-block"></span>
-                        Available
-                      </p>
-                  }
+                  <p className={item.className}>{item.value}</p>
                 </div>
               ))}
             </div>
 
             <div className="flex flex-wrap gap-2 mb-8">
-              {['PHP / Laravel', 'JavaScript', 'MySQL','PostgreeSQL','Python', 'REST API', 'GIS / Leaflet', 'AI Integration'].map(tag => (
+              {[
+                'PHP / Laravel', 'Python', 'Java', 'JavaScript', 'MySQL', 'PostgreSQL',
+                'Tailwind CSS', 'Bootstrap', 'Database Design', 'REST API', 'AI Integration',
+                'Web Scraping', 'Data Processing'
+              ].map(tag => (
                 <span key={tag} className="badge">{tag}</span>
               ))}
             </div>
-
-            {/* <a href="#" className="btn-gold">
-              <i className="fas fa-download mr-2"></i>Download CV
-            </a> */}
           </div>
         </div>
 

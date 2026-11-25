@@ -9,7 +9,7 @@ export default function Navbar() {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50)
 
-      const sections = ['home', 'about', 'skills', 'projects', 'experience', 'contact']
+      const sections = ['home', 'about', 'skills', 'projects', 'experience', 'certifications', 'contact']
       let current = 'home'
       sections.forEach(id => {
         const el = document.getElementById(id)
@@ -32,6 +32,8 @@ export default function Navbar() {
     { id: 'about', label: 'About' },
     { id: 'skills', label: 'Skills' },
     { id: 'projects', label: 'Projects' },
+    { id: 'experience', label: 'Experience' },
+    { id: 'certifications', label: 'Certifications' },
     { id: 'contact', label: 'Contact' },
   ]
 
@@ -49,17 +51,17 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
         {/* Logo */}
         <a href="#home" onClick={e => handleNavClick(e, 'home')} className="text-xl font-display font-bold text-gold-gradient">
-          Muhammad Taufiq Abdus Salam<span className="text-white">.</span>
+          M Taufiq<span className="text-white">.</span>
         </a>
 
         {/* Desktop Nav */}
-        <ul className="hidden md:flex items-center gap-8">
+        <ul className="hidden md:flex items-center gap-7">
           {links.map(link => (
             <li key={link.id}>
               <a
                 href={`#${link.id}`}
                 onClick={e => handleNavClick(e, link.id)}
-                className={`nav-link ${activeSection === link.id ? 'active' : ''}`}
+                className={`nav-link text-sm ${activeSection === link.id ? 'active' : ''}`}
               >
                 {link.label}
               </a>
@@ -71,7 +73,7 @@ export default function Navbar() {
         <a
           href="#contact"
           onClick={e => handleNavClick(e, 'contact')}
-          className="hidden md:block btn-gold"
+          className="hidden lg:block btn-gold"
           style={{ padding: '10px 24px', fontSize: '0.85rem' }}
         >
           Hire Me

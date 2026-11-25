@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import sertifikasiImg from '../assets/sertif.jpeg'
+
 function useReveal() {
   const ref = useRef(null)
   const [visible, setVisible] = useState(false)
@@ -13,8 +14,6 @@ function useReveal() {
   return [ref, visible]
 }
 
-// Isi `image` dengan path gambar sertifikat setelah siap.
-// Contoh: simpan file di folder `public/certificates/` lalu tulis '/certificates/lsp-polinema.jpg'
 const certifications = [
   {
     title: 'Pemrograman Software Komputer',
@@ -32,17 +31,21 @@ function CertificateCard({ item, index, visible }) {
     >
       {/* Bukti sertifikat */}
       {item.image ? (
-        <a href={item.image} target="_blank" rel="noreferrer" className="block">
+        <a href={item.image} target="_blank" rel="noreferrer" className="block relative group overflow-hidden">
           <img
             src={item.image}
             alt={`Sertifikat ${item.title}`}
             loading="lazy"
-            className="w-full h-56 object-cover"
+            className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105"
           />
+          <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2 text-white text-sm font-semibold">
+            <i className="fas fa-arrow-up-right-from-square text-gold-400"></i>
+            <span>Lihat Sertifikat Penuh</span>
+          </div>
         </a>
       ) : (
         <div
-          className="w-full h-56 flex flex-col items-center justify-center gap-3 text-gray-500"
+          className="w-full h-64 flex flex-col items-center justify-center gap-3 text-gray-500"
           style={{ background: 'rgba(10,10,15,0.6)', borderBottom: '1px solid rgba(212,160,23,0.15)' }}
         >
           <i className="fas fa-image text-4xl" style={{ color: 'rgba(245,200,66,0.4)' }}></i>
@@ -59,7 +62,7 @@ function CertificateCard({ item, index, visible }) {
           <span className="badge text-xs">{item.year}</span>
         </div>
         <h3 className="text-lg font-bold mb-1">{item.title}</h3>
-        <p className="font-medium" style={{ color: '#f5c842' }}>{item.issuer}</p>
+        <p className="font-medium text-sm" style={{ color: '#f5c842' }}>{item.issuer}</p>
       </div>
     </div>
   )
@@ -78,9 +81,15 @@ export default function Certifications() {
         <div ref={ref1} className={`text-center mb-16 reveal ${v1 ? 'visible' : ''}`}>
           <p className="text-gold-400 font-semibold tracking-widest text-sm uppercase mb-3">Credentials</p>
           <h2 className="text-4xl lg:text-5xl font-display font-bold section-title inline-block">Certifications</h2>
+          <p className="text-gray-400 mt-6 max-w-xl mx-auto">
+            Sertifikasi kompetensi resmi sebagai bukti kualifikasi dan profesionalitas di bidang teknologi informasi.
+          </p>
         </div>
 
-        <div ref={ref2} className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div
+          ref={ref2}
+          className={certifications.length === 1 ? 'max-w-xl mx-auto' : 'grid grid-cols-1 md:grid-cols-2 gap-8'}
+        >
           {certifications.map((item, i) => (
             <CertificateCard key={item.title} item={item} index={i} visible={v2} />
           ))}

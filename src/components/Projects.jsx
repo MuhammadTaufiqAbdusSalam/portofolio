@@ -8,6 +8,17 @@ import wastelog4 from '../assets/wastelog6.jpg'
 import wastelog5 from '../assets/wastelog7.jpg'
 import pemetaan2 from '../assets/pemetaan2.jpg'
 import pemetaan1 from '../assets/pemetaan.png'
+import ELearning1 from '../assets/learn1.jpg'
+import ELearning2 from '../assets/learn2.jpg'
+import ELearning3 from '../assets/learn3.jpg'
+import ELearning4 from '../assets/learn4.jpg'
+import frozeria1 from '../assets/frozeria1.png'
+import frozeria2 from '../assets/frozeria2.png'
+import frozeria3 from '../assets/frozeria3.png'
+import frozeria4 from '../assets/frozeria4.png'
+import skp1 from '../assets/survei1.png'
+import skp2 from '../assets/survei2.png'
+
 
 function useReveal() {
   const ref = useRef(null)
@@ -34,6 +45,33 @@ const projects = [
     images: [wastelog, wastelog1, wastelog2, wastelog3, wastelog4, wastelog5], // ← ganti dengan foto-foto berbeda
     desc: 'Mengembangkan aplikasi web WasteLog untuk mengelola proses operasional limbah B3, mulai dari pencatatan limbah masuk, pengolahan menggunakan insinerator, hingga pengiriman residu. Membangun fitur manajemen data berbasis multi-role authentication, CRUD, import/export Excel dan PDF, serta dashboard interaktif untuk visualisasi statistik dan monitoring data. Mengimplementasikan algoritma FIFO untuk pengelolaan stok residu dan perhitungan otomatis hasil pembakaran.',
     tags: ['Laravel', 'PHP', 'MySQL', 'Import/Export Excel', 'FIFO', 'CRUD', 'Chart', 'Dashboard Analytics'],
+  },
+  {
+    id: 'SKP',
+    title: 'Survei Kepuasan Pelanggan Polinema',
+    category: 'web',
+    categoryLabel: 'Web App',
+    images: [skp1, skp2], // ← ganti dengan foto-foto berbeda
+    desc: 'Merancang dan mengembangkan sistem informasi survei kepuasan terintegrasi untuk 7 entitas pemangku kepentingan (Admin, Mahasiswa, Dosen, Tendik, Orang Tua, Alumni, dan Industri). Mengimplementasikan sistem autentikasi bertingkat dengan alur verifikasi/approval registrasi pengguna oleh Administrator. Membangun modul manajemen kuesioner dinamis berbasis OOP (CRUD) dengan instrumen penilaian Skala Likert 4 tingkat. Menyediakan dashboard analitik untuk memantau metrik total responden dan laporan kepuasan multi-kategori secara real-time. Mengamankan akses data menggunakan Session/Cookie management, enkripsi password (MD5), serta sanitasi input SQL injection.',
+    tags: ['HTML', 'PHP', 'CSS'],
+  },
+  {
+    id: 'Frozeria',
+    title: 'Frozeria - Sistem Manajemen Stok Frozen Food',
+    category: 'web',
+    categoryLabel: 'Web App',
+    images: [frozeria1, frozeria2, frozeria3, frozeria4], // ← ganti dengan foto-foto berbeda
+    desc: 'Mengembangkan aplikasi web inventaris frozen food untuk mengoptimalkan pencatatan dan monitoring stok secara real-time, menerapkan arsitektur MVC Laravel dan relasi database One-to-Many untuk pengelolaan data barang dan kategori, mengintegrasikan jQuery AJAX dan modal dinamis untuk operasi CRUD tanpa reload halaman, membangun sistem peringatan stok minimum otomatis (low stock warning), serta mengimplementasikan pengelolaan gambar produk dan DataTables untuk mendukung pencarian instan dan paginasi data.',
+    tags: ['Laravel', 'PHP', 'MySQL', 'Bootstrap 4', 'AJAX', 'CRUD'],
+  },
+  {
+    id: 'E-Learning',
+    title: 'Web-Based E-Learning Platform',
+    category: 'web',
+    categoryLabel: 'Web App',
+    images: [ELearning1, ELearning2, ELearning3, ELearning4], // ← ganti dengan foto-foto berbeda
+    desc: 'Mengembangkan platform pembelajaran video berbasis web menggunakan Laravel 10, MySQL, dan Tailwind CSS, dengan fitur autentikasi RBAC untuk Admin dan Mahasiswa, manajemen Course dan Lesson berbasis CRUD, serta streaming video privat. Mengimplementasikan AJAX/Fetch API untuk interaksi tanpa reload halaman dan merancang antarmuka responsif dengan navigasi pembelajaran terstruktur.',
+    tags: ['Laravel', 'MySQL', 'Tailwind CSS'],
   },
   {
     id: 'pemetaan',
